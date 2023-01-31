@@ -16,7 +16,7 @@ This project contains three services:
 1. Create an EC2 instance and install Docker & Terraform on it. - For developers.
 -This is done by the use of IaC - Terraform
 
-2. Create Infrastructure as Code using Terraform for the creation of the deployment of the infrastructure 
+2. Create Infrastructure as Code (main.tf file) using Terraform for the deployment of the infrastructure. 
 Deploy the infrastructure using Terraform. 
 
 ### Initialize the working directory
@@ -33,9 +33,10 @@ Run “Terraform apply” to execute all terraform files
 $ terraform apply
 
 
-3. Create DockerFiles for the three services in Github
-SSH to the EC2 instance and clone the repo with the apps (https://github.com/vnyakutya/infra-problem.git) from Github
+3. Create DockerFiles for the three services in Github and add the files into each project
+SSH to the EC2 instance and clone the repo with the apps (https://github.com/vnyakutya/infra-problem.git) from Github. 
 Run the docker build from CLI 
+
 #### Syntax
 docker build  -t ImageName:TagName dir
 #### Options
