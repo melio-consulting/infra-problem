@@ -78,5 +78,10 @@ docker ps
 
 ### Stopping and Starting the containers
 eg: 
-docker container start newsfeed
-docker container stop newsfeed
+docker container start newsfeed. 
+docker container stop newsfeed.
+
+### Future Work
+• We need to be able to deploy the microservices to the cloud -  This can de achieved using Terraform(IaC tool). 
+• We need to extend these scripts via the CI server to build a deployment pipeline - We will add a yaml CI/CD pipeline (Pipeline as Code). 
+• We need to add environments and extend and harden into a production system later on - We can increase the infrastructure size by adding more resources.
