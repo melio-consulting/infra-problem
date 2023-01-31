@@ -6,37 +6,45 @@ This project contains three services:
 * `newsfeed` which aggregates several RSS feeds together
 * `front-end` which calls the two previous services and displays the results.
 
-1. Create an EC2 instance and install Docker & Terraform on it. - For developers.
--This is done by the use of IaC - Terraform
-
-2. Create infrastructure as code using Terraform for the creation of the infrastructure 
-Deploy the infrastructure using Terraform. 
-## Initialize
-Initialize the directory containing Terraform
-Initialize configuration directory by downloading and install the providers defined in the configuration, which in this case is the aws provider.
-$ terraform init
-
-## Run the plan
-After successful initialization, try to run “terraform plan” to see any changes that are required.
-$ terraform plan
-
-## Apply changes
-Run “Terraform apply” to execute all terraform files
-$ terraform apply
-##
-
-3. Create DockerFiles for the three services in Github
-SSH to the EC2 instance and clone the repo with the apps from Github
-Run the docker build from CLI
-The Docker images will be pushed to an Amazon ECR repository
-
-
 ## Prerequisites
 
 * Java
 * [Leiningen](http://leiningen.org/) (can be installed using `brew install leiningen`)
 * Docker
 * Terraform
+
+1. Create an EC2 instance and install Docker & Terraform on it. - For developers.
+-This is done by the use of IaC - Terraform
+
+2. Create Infrastructure as Code using Terraform for the creation of the deployment of the infrastructure 
+Deploy the infrastructure using Terraform. 
+
+# Initialize the working directory
+Initialize the directory containing Terraform
+Initialize configuration directory by downloading and install the providers defined in the configuration, which in this case is the aws provider.
+$ terraform init
+
+# Run the plan
+After successful initialization, try to run “terraform plan” to see any changes that are required.
+$ terraform plan
+
+# Apply changes
+Run “Terraform apply” to execute all terraform files
+$ terraform apply
+
+
+3. Create DockerFiles for the three services in Github
+SSH to the EC2 instance and clone the repo with the apps (https://github.com/vnyakutya/infra-problem.git) from Github
+Run the docker build from CLI 
+# Syntax
+docker build  -t ImageName:TagName dir
+# Options
+-t − is to mention a tag to the image
+  ImageName − This is the name you want to give to your image.
+  TagName − This is the tag you want to give to your image.
+  Dir − The directory where the Docker File is present.
+The Docker images will be pushed to an Amazon ECR repository which was created by Terraform
+
 
 ## Building & Running Services
 
