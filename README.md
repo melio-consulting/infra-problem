@@ -10,50 +10,33 @@ This project contains three services:
 
 * Java
 * [Leiningen](http://leiningen.org/) (can be installed using `brew install leiningen`)
+* Docker
+* Terraform
 
-## Running tests
+## Building & Running Services
 
-You can run the tests of all apps by using `make test`
-
-## Building
-
-First you need to ensure that the common libraries are installed: run `make libs` to install them to your local `~/.m2` repository. This will allow you to build the JARs.
-
-To build all the JARs and generate the static tarball, run the `make clean all` command from this directory. The JARs and tarball will appear in the `build/` directory.
-
-### Static assets
-
-`cd` to `front-end/public` and run `./serve.py` (you need Python3 installed). This will serve the assets on port 8000.
-
-## Running
-
-All the apps take environment variables to configure them and expose the URL `/ping` which will just return a 200 response that you can use with e.g. a load balancer to check if the app is running.
+The containers can be started up as below after pulling the images from Registry.
 
 ### Front-end app
-
-`java -jar front-end.jar`
-
-*Environment variables*:
-
-* `APP_PORT`: The port on which to run the app
-* `STATIC_URL`: The URL on which to find the static assets
-* `QUOTE_SERVICE_URL`: The URL on which to find the quote service
-* `NEWSFEED_SERVICE_URL`: The URL on which to find the newsfeed service
-* `NEWSFEED_SERVICE_TOKEN`: The authentication token that allows the app to talk to the newsfeed service. This should be treated as an application secret. The value should be: `T1&eWbYXNWG1w1^YGKDPxAWJ@^et^&kX`
+$ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/front-end:latest
+$ docker build --tag front-end -f Dockerfile target
+$ docker run --name front-end --env MY_ENV_VAR=some_value -p 3000:3000 -rm front-end
 
 ### Quote service
-
-`java -jar quotes.jar`
-
-*Environment variables*
-
-* `APP_PORT`: The port on which to run the app
+$ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/quotes:latest
+$ docker build --tag quotes -f Dockerfile target
+$ docker run --name quotes --env MY_ENV_VAR=some_value -p 3010:3000 -rm quotes
 
 ### Newsfeed service
+$ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/newsfeed:latest
+$ docker build --tag newsfeed -f Dockerfile target
+$ docker run --name newsfeed --env MY_ENV_VAR=some_value -p 3020:3000 -rm newsfeed
 
-`java -jar newsfeed.jar`
+### Check that containers are running
 
-*Environment variables*
+docker ps
 
-* `APP_PORT`: The port on which to run the app
-
+### Stopping and Starting the containers
+eg: 
+docker container start newsfeed
+docker container stop newsfeed
