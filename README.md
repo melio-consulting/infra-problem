@@ -6,6 +6,31 @@ This project contains three services:
 * `newsfeed` which aggregates several RSS feeds together
 * `front-end` which calls the two previous services and displays the results.
 
+1. Create an EC2 instance and install Docker & Terraform on it. - For developers.
+-This is done by the use of IaC - Terraform
+
+2. Create infrastructure as code using Terraform for the creation of the infrastructure 
+Deploy the infrastructure using Terraform. 
+## Initialize
+Initialize the directory containing Terraform
+Initialize configuration directory by downloading and install the providers defined in the configuration, which in this case is the aws provider.
+$ terraform init
+
+## Run the plan
+After successful initialization, try to run “terraform plan” to see any changes that are required.
+$ terraform plan
+
+## Apply changes
+Run “Terraform apply” to execute all terraform files
+$ terraform apply
+##
+
+3. Create DockerFiles for the three services in Github
+SSH to the EC2 instance and clone the repo with the apps from Github
+Run the docker build from CLI
+The Docker images will be pushed to an Amazon ECR repository
+
+
 ## Prerequisites
 
 * Java
