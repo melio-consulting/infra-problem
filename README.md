@@ -19,17 +19,23 @@ The containers can be started up as below after pulling the images from Registry
 
 ### Front-end app
 $ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/front-end:latest
+
 $ docker build --tag front-end -f Dockerfile target
+
 $ docker run --name front-end --env MY_ENV_VAR=some_value -p 3000:3000 -rm front-end
 
 ### Quote service
 $ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/quotes:latest
+
 $ docker build --tag quotes -f Dockerfile target
+
 $ docker run --name quotes --env MY_ENV_VAR=some_value -p 3010:3000 -rm quotes
 
 ### Newsfeed service
 $ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/newsfeed:latest
+
 $ docker build --tag newsfeed -f Dockerfile target
+
 $ docker run --name newsfeed --env MY_ENV_VAR=some_value -p 3020:3000 -rm newsfeed
 
 ### Check that containers are running
