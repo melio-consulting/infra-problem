@@ -78,7 +78,9 @@ docker ps
 
 ### Stopping and Starting the containers
 eg: 
+
 docker container start newsfeed. 
+
 docker container stop newsfeed.
 
 ### Future Work
